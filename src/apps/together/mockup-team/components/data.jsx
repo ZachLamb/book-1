@@ -102,7 +102,7 @@ actions.login = function(){
 
 actions.logout = function(){
 
-  if (data.user){
+  if (window.localStorage["firebase:session::drinktogether"]){
 
     firebaseRef.unauth()
 
@@ -117,6 +117,8 @@ actions.logout = function(){
     userRef.child('status').set('offline')
 
     data.user = null
+    
+    localStorage.clear();
 
     render()
 

@@ -33,7 +33,7 @@ firebaseRef.child('yelp/businesses')
   .on('value', function(snapshot){
 
     data.businesses = _.values(snapshot.val())
-    console.log(data.businesses)
+    // console.log(data.businesses)
     render()
 
   })

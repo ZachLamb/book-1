@@ -57,42 +57,45 @@
 
 
    $( "#QtGrp" ).click(function() {
-		var session = window.localStorage["firebase:session::drinktogether"];
-		var seesionObj = JSON.parse(session);
-	var usrName = seesionObj['google'].displayName;
-console.log('leave', usrName)
-    var groupID;
-	var ref2 = new Firebase('https://drinktogether.firebaseio.com/users/'+usrName+'/groupID/');
-		console.log('URL: ', 'https://drinktogether.firebaseio.com/users/'+usrName+'/groupID/')
-	ref2.on('value', function(snapshot){
-		var ID = snapshot.val();
-		groupID = ID;
-		console.log('Leaving: ', groupID)
-    		var ref3 = new Firebase('https://drinktogether.firebaseio.com/groups/id/' + groupID + '/listOfUsers/');
-		console.log('Person: ', 'https://drinktogether.firebaseio.com/groups/id/' + groupID + '/listOfUsers/')
-    		var onComplete2 = function(error) {
-       		 if (error) {
-          			  console.log('Leave Synchronization failed');
-       			 } else {
-            				console.log('Leave Synchronization succeeded');
-        	}
-    };
-    ref3.child(usrName).remove(onComplete2);
-		var ref2 = new Firebase('https://drinktogether.firebaseio.com/users/'+usrName);
-    		ref2.once('value', function(snapshot){
-		        var user = snapshot.val();
-			ref2.set({
-        		lat: user.lat,
-        		lon: user.lon,
-        		name: user.name,
-        		isGroupOwner: 'False',
-			groupID: "000",
-    		});
-		})
-	});
-
-window.location.href = "group.html";
-
+    if (window.localStorage["firebase:session::drinktogether"]){
+  		var session = window.localStorage["firebase:session::drinktogether"];
+  		var seesionObj = JSON.parse(session);
+  	  var usrName = seesionObj['google'].displayName;
+      console.log('leave', usrName)
+      var groupID;
+  	  var ref2 = new Firebase('https://drinktogether.firebaseio.com/users/'+usrName+'/groupID/');
+  		console.log('URL: ', 'https://drinktogether.firebaseio.com/users/'+usrName+'/groupID/')
+  	  ref2.on('value', function(snapshot){
+    		var ID = snapshot.val();
+    		groupID = ID;
+    		console.log('Leaving: ', groupID)
+        		var ref3 = new Firebase('https://drinktogether.firebaseio.com/groups/id/' + groupID + '/listOfUsers/');
+    		console.log('Person: ', 'https://drinktogether.firebaseio.com/groups/id/' + groupID + '/listOfUsers/')
+        		var onComplete2 = function(error) {
+           		 if (error) {
+              			  console.log('Leave Synchronization failed');
+           			 } else {
+                				console.log('Leave Synchronization succeeded');
+            	}
+      };
+      ref3.child(usrName).remove(onComplete2);
+  		var ref2 = new Firebase('https://drinktogether.firebaseio.com/users/'+usrName);
+      		ref2.once('value', function(snapshot){
+  		        var user = snapshot.val();
+  			ref2.set({
+          		lat: user.lat,
+          		lon: user.lon,
+          		name: user.name,
+          		isGroupOwner: 'False',
+  			groupID: "000",
+      		});
+  		})
+  	});
+    window.location.href = "group.html";
+  }
+  else{
+    window.location.href = "group.html";
+  }
    });
   </script>  
 

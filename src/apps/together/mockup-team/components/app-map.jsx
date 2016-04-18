@@ -6,7 +6,6 @@ class AppMap extends React.Component {
       		user={this.props.data.user}
       		actions={this.props.actions}/>
       	<MyComponents.MapView
-      		user={this.props.data.user}
             groups={this.props.data.groups}
             center={this.props.data.center}
             users={this.props.data.users}

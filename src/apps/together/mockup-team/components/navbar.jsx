@@ -17,7 +17,7 @@ class NavBar extends React.Component {
                         <li><a href="index.html">Home</a></li>
                         <li><a href="map.html">Map</a></li>
                         <li><a href="group.html">Group</a></li>
-                        <li><a href="index.html" onClick={this.props.actions.logout}>Logout</a></li>
+                        <li><a href="#" onClick={this.props.actions.logout}>Logout</a></li>
                     </ul>
                     <ul id="nav-mobile" className="right hide-on-med-and-down">
                         <li>{username}</li>
